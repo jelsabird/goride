@@ -126,3 +126,5 @@ app.*.symbols
 *.js_
 *.js.deps
 *.js.map
+
+lib/secsto.dart
