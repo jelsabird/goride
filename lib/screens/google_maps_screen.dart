@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:goride/secsto.dart';
 
-const double CAMERA_ZOOM = 15;
-const double CAMERA_TILT = 60;
+const double CAMERA_ZOOM = 14;
+const double CAMERA_TILT = 0;
 const double CAMERA_BEARING = 30;
 const LatLng SOURCE_LOCATION = LatLng(58.96051425865622, 5.710915382344477);
 const LatLng DEST_LOCATION = LatLng(58.96045135975318, 5.7107120744034265);
@@ -25,7 +27,8 @@ class GoogleMapsScreenState extends State<GoogleMapsScreen> {
 // this is the key object - the PolylinePoints
 // which generates every polyline between start and finish
   PolylinePoints polylinePoints = PolylinePoints();
-  String googleAPIKey = 'AIzaSyCQ-kA4JGKxZ9Tt5uDrQOxM2Qjoc1OxiAA';
+  String googleAPIKey =
+      Platform.isAndroid ? ApiKeys.googleMapsAndroid : ApiKeys.googleMapsIOS;
 // for my custom icons
   late BitmapDescriptor sourceIcon;
   late BitmapDescriptor destinationIcon;
@@ -39,7 +42,7 @@ class GoogleMapsScreenState extends State<GoogleMapsScreen> {
   void setSourceAndDestinationIcons() async {
     sourceIcon = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(devicePixelRatio: 2.5),
-        'icons/destination_map_marker.png'); // TODO: Endre til sykkelikon
+        'icons/destination_map_marker.png');
     destinationIcon = await BitmapDescriptor.fromAssetImage(
         ImageConfiguration(devicePixelRatio: 2.5),
         'icons/destination_map_marker.png');
@@ -53,15 +56,20 @@ class GoogleMapsScreenState extends State<GoogleMapsScreen> {
         tilt: CAMERA_TILT,
         target: SOURCE_LOCATION);
 
-    return GoogleMap(
-      myLocationEnabled: true,
-      compassEnabled: true,
-      tiltGesturesEnabled: true,
-      markers: _markers,
-      polylines: _polylines,
-      mapType: MapType.normal,
-      initialCameraPosition: initialLocation,
-      onMapCreated: onMapCreated,
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Google Maps'),
+      ),
+      body: GoogleMap(
+        myLocationEnabled: true,
+        compassEnabled: true,
+        tiltGesturesEnabled: true,
+        markers: _markers,
+        polylines: _polylines,
+        mapType: MapType.normal,
+        initialCameraPosition: initialLocation,
+        onMapCreated: onMapCreated,
+      ),
     );
   }
 

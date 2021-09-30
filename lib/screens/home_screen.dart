@@ -29,7 +29,33 @@ class HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Flutter map demo')),
-      body: Column(
+      body: Container(
+        alignment: Alignment.center,
+        child: ButtonBar(
+          alignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+              onPressed: _googleMaps,
+              child: Text('Google Maps'),
+            ),
+            TextButton(
+              onPressed: _openStreetMap,
+              child: Text('OpenStreetMaps'),
+            ),
+            TextButton(
+              onPressed: _mapBox,
+              child: Text('Mapbox'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/*
+
+Column(
         children: [
           InkWell(
             child: Container(
@@ -69,6 +95,4 @@ class HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-    );
-  }
-}
+      */

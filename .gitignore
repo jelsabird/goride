@@ -128,3 +128,4 @@ app.*.symbols
 *.js.map
 
 lib/secsto.dart
+.netrc

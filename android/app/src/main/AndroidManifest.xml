@@ -1,5 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.goride">
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
    <application
         android:label="goride"
         android:icon="@mipmap/ic_launcher">
@@ -38,7 +42,7 @@
             android:name="flutterEmbedding"
             android:value="2" />
             <meta-data
-            android:name="com.google.android.geo.AIzaSyCMXYIw8qvxYVIfP6erYrw9xE2XN9XxRi0"
-            android:value="AIzaSyCMXYIw8qvxYVIfP6erYrw9xE2XN9XxRi0" />
+            android:name="com.google.android.geo.AIzaSyCQ-kA4JGKxZ9Tt5uDrQOxM2Qjoc1OxiAA"
+            android:value="AIzaSyCQ-kA4JGKxZ9Tt5uDrQOxM2Qjoc1OxiAA" />
     </application>
 </manifest>
